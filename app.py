@@ -51,7 +51,7 @@ def signup_user():
 
     return redirect(url_for('login_page'))
 
-@app.route('/home', methods=['POST'])
+@app.route('/bus-list', methods=['POST'])
 def bus_route():
     bus_from = request.form['from-station']
     bus_to = request.form['to-station']

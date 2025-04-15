@@ -1,0 +1,23 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fare Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Fare Summary</h1>
+        <p><strong>Passenger Name:</strong> {{ name }}</p>
+        <p><strong>Age:</strong> {{ age }}</p>
+        <p><strong>Gender:</strong> {{ gender }}</p>
+        <p><strong>Bus Name:</strong> {{ bus.name }}</p>
+        <p><strong>Fare per person (based on age):</strong> ₹{{ fare_per_person }}</p>
+        <p><strong>Number of Seats:</strong> {{ seats }}</p>
+        <p><strong>Total Fare:</strong> ₹{{ total_fare }}</p>
+ 
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>
