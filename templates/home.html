@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/home-style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="container-header">
+                <div class = row>
+                    <div class="col-md-2" style="width: 4%;"></div>
+                    <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="../static/images/ChatGPT Image Apr 14, 2025, 02_53_33 PM.png" class="head-logo">
+                            </div>
+                            <div class="col-md-6" style="padding-left: 0px; margin-top: 6%;">
+                                <img src="../static/images/Screenshot 2025-04-14 163509.png" class="head-logo1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 hihi1" style="margin-left: 6%; color: red;"><i class="fas fa-bus"></i><a class="header-link" style="color: red !important;" href="{{ url_for('home') }}">Buses</a></div>
+                    <div class="col-md-1 hihi1"><i class="fas fa-train"></i><a class="header-link" href="">Trains</a></div>
+                    <div class="col-md-1 hihi1"><i class="fas fa-plane"></i><a class="header-link" href="">Flights</a></div>
+                    <div class="col-md-1 hihi1"><i class="fas fa-hotel"></i><a class="header-link" href="">Hotels</a></div>
+                    <div class="col-md-1 hihi2" style="width: 7% !important;margin-left: 4% !important;"><i class="fas fa-percentage"></i><a class="header-link" href="">Offers</a></div>
+                    <div class="col-md-1 hihi2"><i class="fas fa-ticket"></i><a class="header-link" href="">Track Tickets</a></div>
+                    <div class="col-md-1 hihi2"><i class="fas fa-headset"></i><a class="header-link" href="">Need Help?</a></div>
+                    <div class="col-md-1 hihi2"><i class="fas fa-user-astronaut"></i><a class="header-link" href="{{ url_for('login_page') }}">Login/Signup</a></div>
+                </div>
+            </div>
+        </header>
+        <div class="bg-img">
+            <div class="container">
+                <div class="row" style="padding: 5%;"><div class="col-md-12"></div></div>
+                <form action="{{ url_for('bus_route') }}" method="POST">
+                    <div class="row search-box">
+                        <div class="col-md-3" style="width: 315px;">
+                            <div class="row from-to-box">
+                                <div class="col-md-2">
+                                    <i class="fas fa-bus logo-box"></i>
+                                </div>
+                                <div class="col-md-10" style="padding-left: 0px !important;">
+                                    <input type="list" list="buses" class="form-control text-box" placeholder="From Station.." name="from-station" required>
+                                    <datalist id="buses">
+                                        <option value="Ariyalur">
+                                        <option value="Chengalpattu"><option value="Chennai"><option value="Chidambaram">
+                                        <option value="Coimbatore"><option value="Cuddalore"><option value="Dindigul">
+                                        <option value="Erode"><option value="Kanchipuram"><option value="Karaikudi">
+                                        <option value="Karur"><option value="Madurai"><option value="Nagapattinam">
+                                        <option value="Nagercoil"><option value="Namakkal"><option value="Perambalur">
+                                        <option value="Pollachi"><option value="Pudukottai"><option value="Ranipet">
+                                        <option value="Salem"><option value="Sivagangai"><option value="Thanjavur">
+                                        <option value="Theni"><option value="Thiruvallur"><option value="Thoothukudi">
+                                        <option value="Tiruchendur"><option value="Tirunelveli"><option value="Tirupur">
+                                        <option value="Tiruvannamalai"><option value="Trichy"><option value="Vellore">
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="width: 315px;">
+                            <div class="row from-to-box">
+                                <div class="col-md-2">
+                                    <i class="fas fa-location-arrow logo-box"></i>
+                                </div>
+                                <div class="col-md-10" style="padding-left: 0px !important;">
+                                    <input type="list" list="buses" class="form-control text-box" placeholder="To Station.." name="to-station" required>
+                                    <datalist id="buses">
+                                        <option value="Chennai">
+                                        <option value="Chidambaram">
+                                        <option value="Coimbatore">
+                                        <option value="Dindigul">
+                                        <option value="Erode">
+                                        <option value="Kanchipuram">
+                                        <option value="Kanyakumari">
+                                        <option value="Kumbakonam">
+                                        <option value="Madurai">
+                                        <option value="Nagapattinam">
+                                        <option value="Nagercoil">
+                                        <option value="Perambalur">
+                                        <option value="Pollachi">
+                                        <option value="Salem">
+                                        <option value="Thanjavur">
+                                        <option value="Theni">
+                                        <option value="Thoothukudi">
+                                        <option value="Tiruchendur">
+                                        <option value="Tirunelveli">
+                                        <option value="Tirupur">
+                                        <option value="Trichy">
+                                        <option value="Vellore">
+                                        <option value="Virudhunagar">
+                                            
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="width: 315px;">
+                            <div class="row from-to-box">
+                                <div class="col-md-2">
+                                    <i class="fas fa-calendar-alt logo-box"></i>
+                                </div>
+                                <div class="col-md-6" style="padding-left: 0px !important;">
+                                    <input type="date"  class="form-control date-box " name="travel-date" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="width: 315px;">
+                            <div class="row from-to-box" style="border: 0px !important; padding: 0px !important;">
+                                <button type="submit" class="submit-btn" style="background-color: cornflowerblue; ">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

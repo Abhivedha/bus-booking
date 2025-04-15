@@ -1,0 +1,22 @@
+/*
+.body-container{
+    background-image: url('https://images6.alphacoders.com/101/1010291.jpg');
+    background-size: cover;
+}
+*/
+body{
+    background-image: url('https://images6.alphacoders.com/101/1010291.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+header{
+    height: 90px;
+    background-color: white;
+    background-blend-mode: lighten;
+}
+.logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

@@ -1,0 +1,48 @@
+body {
+    background: white;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .container-box {
+    max-width: 960px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+  }
+  .left-panel {
+    background: linear-gradient(to bottom right, #23c0f4, #f2f5f4);
+    padding: 40px;
+    width: 50%;
+  }
+  .right-panel {
+    background: url('https://i.pinimg.com/736x/d2/e1/ba/d2e1ba32d9495b778a9a66dcb6bd1a14.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    width: 50%;
+  }
+  .form-control {
+    border-radius: 20px !important;
+    padding: 10px 20px !important;
+  }
+  .submit-btn {
+    background-color: aqua;
+    border: 3px white solid;
+    color: #000;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: 500;
+    width: 100%;
+  }
+  .social-btn {
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 8px 16px;
+    background: #fff;
+    width: 100%;
+  }
+  .small-text a {
+    text-decoration: none;
+    font-weight: 500;
+  }
