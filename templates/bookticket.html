@@ -40,12 +40,12 @@
         </div>
         <div class="right-panel">
             <h4 class="mb-2"><b>Book for {{ bus.bus_name}} <br> {{ bus.from_place }} <i class="fas fa-angle-double-right"></i> {{ bus.to_place }}</b></h4>
-          <form action="{{ url_for('book_ticket', bus_id= bus.bus_id) }}" method="POST">
+          <form action="{{ url_for('ticket_confirmation', bus_id= bus.bus_id) }}" method="POST">
             <div class="mb-2">
-              <input type="text" class="form-control" placeholder="Enter Your Name" name="user-name" required>
+              <input type="text" class="form-control" placeholder="Enter Passenger Name" name="user-name" required>
             </div>
             <div class="mb-2">
-              <input type="number" class="form-control" placeholder="Enter Your Age" name="user-number" required>
+              <input type="number" class="form-control" placeholder="Enter Passenger Age" name="user-age" required>
             </div>
             <div class="mb-2" style="margin-bottom: -5% !important;">
                 <select id="gender" name="user-gender" class="form-control" required>
@@ -64,7 +64,7 @@
               <input type="number" class="form-control" style="margin-bottom: 3%;" placeholder="Number of Seats (Kids - Below 5 )" name="infant-count" required>
             </div>
             <div class="mb-2">
-              <button type="submit" class="submit-btn">Book Ticket</button>
+              <button type="submit" class="submit-btn">Validate Ticket</button>
             </div>
           </form>
           </div>

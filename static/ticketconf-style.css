@@ -1,4 +1,46 @@
-.container-header {
+body {
+    background: white;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .container-box {
+    max-width: 960px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+  }
+  .right-panel {
+    background: linear-gradient(to bottom right, #23c0f4, #f2f5f4);
+    padding: 20px;
+    width: 100%;
+  }
+  .form-control {
+    border-radius: 20px !important;
+    padding: 10px 20px !important;
+  }
+  .submit-btn {
+    background-color: aqua;
+    border: 3px white solid;
+    color: #000;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: 500;
+    width: 100%;
+  }
+  .social-btn {
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 8px 16px;
+    background: #fff;
+    width: 100%;
+  }
+  .small-text a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .container-header {
     background: white !important;
 }
 .head-logo {
@@ -10,11 +52,12 @@
     width: 160%;
 }
 .bg-img {
-    background: url("../static/images/header-transit.jpg") !important;
+    background: url("../static/images/1010291.jpg") !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     height: 593px;
+
 }
 .logo-txt {
     color: #000000 !important;
@@ -55,13 +98,13 @@
     background-color: cornflowerblue;
     margin-top: 2px !important;
     border: 3px cornflowerblue solid;
-    border-radius: 3px !important;
+    border-radius: 50px !important;
   }
 .submit-btn:hover {
     background-color: aqua !important;
     border: 3px aqua solid;
     color: #000;
-    border-radius: 5px !important;
+    border-radius: 50px !important;
     padding: 10px 20px;
     font-weight: 500;
     width: 100%;
@@ -100,7 +143,7 @@
 input[type="list"]:focus {
     outline: none;
     box-shadow: none;
-}
+  }
 .custom-select-scroll {
     max-height: 200px; /* Scroll when height exceeds */
     overflow-y: auto;
@@ -113,11 +156,4 @@ select.form-select {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     padding: 10px;
     font-size: 1rem;
-}
-.card-box {
-    margin-top: 5px !important;
-    margin-bottom: 0px !important;
-}
-.space {
-    height: 5px !important;
 }
