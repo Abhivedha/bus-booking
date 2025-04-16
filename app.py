@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for,flash
+from flask import Flask, request, render_template, redirect, url_for,flash,session
 import pymysql
 from datetime import date
 
@@ -23,7 +23,6 @@ def home():
     today = date.today().isoformat()  # gives "YYYY-MM-DD"
     return render_template('home.html', places=places, today=today)
 
-
 @app.route('/login', methods=['GET','POST'])
 def login_user():
     if request.method == 'POST':
@@ -34,11 +33,19 @@ def login_user():
         cursor.execute(sql, val)
         result = cursor.fetchone()
         if result:
+            session['user_logged_in'] = True
+            session['user_name'] = result[1] 
             return redirect(url_for('home'))
         else:
             return "Invalid credentials"
     elif request.method == 'GET':
         return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user_logged_in', None)
+    return redirect(url_for('home'))
+
 
 @app.route('/signup', methods=['GET','POST'])
 def signup_user():
@@ -52,15 +59,19 @@ def signup_user():
         val = (user_name, user_email, user_number,user_password)
         cursor.execute(sql, val)
         db.commit()
-
         return redirect(url_for('login_user'))
+    
     elif request.method == 'GET':
         return render_template('signup.html')
 
 @app.route('/bus-route', methods=['GET','POST'])
 def bus_route():
+    if not session.get('user_logged_in'):
+        return redirect(url_for('login_user'))  
+    
     if request.method == 'GET':
         return render_template('bookticket.html')
+    
     elif request.method == 'POST':
         bus_from = request.form['from-station']
         bus_to = request.form['to-station']

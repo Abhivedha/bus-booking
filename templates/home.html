@@ -8,24 +8,34 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
-    <script>
-        function validateSearchForm() {
-            const fromStation = document.querySelector('input[name="from-station"]').value.trim();
-            const toStation = document.querySelector('input[name="to-station"]').value.trim();
     
-            if (fromStation === "" || toStation === "") {
-                alert("Please fill in both From and To Locations.");
-                return false;
-            }
-    
-            if (fromStation.toLowerCase() === toStation.toLowerCase()) {
-                alert("From and To Locations cannot be the same.");
-                return false;
-            }
-    
-            return true; // Form will be submitted
+<script>
+    function validateSearchForm() {
+        const fromStation = document.querySelector('input[name="from-station"]').value.trim();
+        const toStation = document.querySelector('input[name="to-station"]').value.trim();
+
+        if (fromStation === "" || toStation === "") {
+            alert("Please fill in both From and To Locations.");
+            return false;
         }
-    </script>
+
+        if (fromStation.toLowerCase() === toStation.toLowerCase()) {
+            alert("From and To Locations cannot be the same.");
+            return false;
+        }
+
+        // ✅ Get login status safely from HTML
+        const isLoggedIn = document.getElementById("login-status").dataset.loggedIn === "True";
+        if (!isLoggedIn) {
+            alert("Please login to search for buses.");
+            window.location.href = "{{ url_for('login_user') }}";
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
     
     <body>
         <header>
@@ -49,9 +59,24 @@
                     <div class="col-md-1 hihi2" style="width: 7% !important;margin-left: 4% !important;"><i class="fas fa-percentage"></i><a class="header-link" href="">Offers</a></div>
                     <div class="col-md-1 hihi2"><i class="fas fa-ticket"></i><a class="header-link" href="">Track Tickets</a></div>
                     <div class="col-md-1 hihi2"><i class="fas fa-headset"></i><a class="header-link" href="">Need Help?</a></div>
-                    <div class="col-md-1 hihi2"><i class="fas fa-user-astronaut"></i><a class="header-link" href="{{ url_for('login_user') }}">Login/Signup</a></div>
+                    {% if session.get('user_logged_in') %}
+                    <div class="col-md-2 hihi2">
+                        <i class="fas fa-user-check"></i>
+                        <span class="header-link">Hi, {{ session.get('user_name') }} 👋</span>
+                    </div>
+                    <div class="col-md-1 hihi2">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a class="header-link" href="{{ url_for('logout') }}">Logout</a>
+                    </div>
+                    {% else %}
+                    <div class="col-md-2 hihi2">
+                        <i class="fas fa-user-astronaut"></i>
+                        <a class="header-link" href="{{ url_for('login_user') }}">Login/Signup</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
+            <div id="login-status" data-logged-in="{{ session.get('user_logged_in', False) }}"></div>
         </header>
         <div class="bg-img">
             <div class="container">
