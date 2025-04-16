@@ -1,24 +1,28 @@
 from flask import Flask, request, render_template, redirect, url_for,flash
 import pymysql
+from datetime import date
 
 app = Flask(__name__)
 
 db = pymysql.connect(
     host="127.0.0.1",       
     user="root",
-    password="root",
+    password="tamilRAJAN@01",
     database="bus_booking"  
 )
 
 cursor = db.cursor()
-
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 @app.route('/')
 def home():
-    return render_template('home.html') 
+    cursor.execute("SELECT place_name FROM places")
+    places = [row[0] for row in cursor.fetchall()]
+    today = date.today().isoformat()  # gives "YYYY-MM-DD"
+    return render_template('home.html', places=places, today=today)
+
 
 @app.route('/login', methods=['GET','POST'])
 def login_user():
