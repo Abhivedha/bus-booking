@@ -64,27 +64,33 @@ def signup_user():
     elif request.method == 'GET':
         return render_template('signup.html')
 
-@app.route('/bus-route', methods=['GET','POST'])
+@app.route('/bus-route', methods=['GET', 'POST'])
 def bus_route():
     if not session.get('user_logged_in'):
-        return redirect(url_for('login_user'))  
-    
+        return redirect(url_for('login_user'))
+
     if request.method == 'GET':
-        return render_template('bookticket.html')
-    
+        cursor.execute("SELECT place_name FROM places")
+        all_places = [row[0] for row in cursor.fetchall()]
+        return render_template('bookticket.html', places=all_places)
+
     elif request.method == 'POST':
         bus_from = request.form['from-station']
         bus_to = request.form['to-station']
         travel_date = request.form['travel-date']
-
-
+        print(travel_date)
         sql = """
-                SELECT b.bus_id, b.bus_name, b.from_place, b.to_place, b.departure_time, b.arrival_time, bf.fare_amount
-                FROM bus b
-                join bus_fare bf on b.bus_id = bf.bus_id
-                WHERE b.from_place = %s AND b.to_place = %s AND b.travel_date = %s;
-                """
-
+            SELECT b.bus_id, b.bus_name, 
+                   p1.place_name AS from_place, 
+                   p2.place_name AS to_place, 
+                   b.departure_time, b.arrival_time, 
+                   bf.fare_amount
+            FROM bus b
+            JOIN places p1 ON b.from_place_id = p1.place_id
+            JOIN places p2 ON b.to_place_id = p2.place_id
+            JOIN bus_fare bf ON b.bus_id = bf.bus_id
+            WHERE p1.place_name = %s AND p2.place_name = %s AND b.travel_date = %s;
+        """
         val = (bus_from, bus_to, travel_date)
         cursor.execute(sql, val)
         buses = cursor.fetchall()
@@ -101,6 +107,7 @@ def bus_route():
                 'price': bus[6]
             })
         return render_template('busroute.html', buses=bus_list)
+
 
 @app.route('/ticket-confirmation/<int:bus_id>', methods=['POST'])
 def ticket_confirmation(bus_id): 
